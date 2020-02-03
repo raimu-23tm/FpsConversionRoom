@@ -18,7 +18,7 @@ public class CenterMoveEvent : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        this.player = GameObject.Find("FPSController");
+        this.player = GameObject.Find("MainPlayer");
 
     }
 	
@@ -30,7 +30,7 @@ public class CenterMoveEvent : MonoBehaviour {
         {
 
             moveCount += 1;
-
+            
             player.transform.position = 
                 new Vector3(moveStartPosition.x + ((this.transform.position.x - moveStartPosition.x) / moveTime) * moveCount,
                             moveStartPosition.y,
@@ -52,10 +52,10 @@ public class CenterMoveEvent : MonoBehaviour {
 	}
 
     //当たり判定に入る。
-    void OnTriggerEnter(Collider colinder)
+    void OnTriggerEnter(Collider collider)
     {
 
-        if (colinder.tag == "player")
+        if (collider.tag == "Player")
         {
             isMoving = true;
             moveCount = 0;
@@ -68,7 +68,7 @@ public class CenterMoveEvent : MonoBehaviour {
     }
 
     //当たり判定を抜ける。
-    void OnTriggerExit(Collider colinder)
+    void OnTriggerExit(Collider collider)
     {
         isDoneEnter = false;
     }

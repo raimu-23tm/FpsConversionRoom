@@ -11,10 +11,6 @@ public class Room2Event : MonoBehaviour
 
     private float messageStartTime = 0f;
 
-    private GameObject objectB;
-
-    private GameObject player;
-
     private GameObject message;
 
     private GameManager gameManager;
@@ -24,11 +20,7 @@ public class Room2Event : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
-        this.objectB = GameObject.Find("ObjectB");
-
-        this.player = GameObject.Find("FPSController");
-
+        
         this.message = GameObject.Find("PleasePushKeyInfo");
 
         this.gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -77,9 +69,9 @@ public class Room2Event : MonoBehaviour
     }
 
     //当たり判定に入る。
-    void OnTriggerEnter(Collider colinder)
+    void OnTriggerEnter(Collider collider)
     {
-        if (colinder.tag == "player")
+        if (collider.tag == "Player")
         {
             isInRoom2 = true;
 
@@ -95,7 +87,7 @@ public class Room2Event : MonoBehaviour
     }
 
     //当たり判定を抜ける。
-    void OnTriggerExit(Collider colinder)
+    void OnTriggerExit(Collider collider)
     {
         isInRoom2 = false;
     }

@@ -25,7 +25,7 @@ public class Room1Event : MonoBehaviour {
 
         this.objectA = GameObject.Find("ObjectA");
 
-        this.player = GameObject.Find("FPSController");
+        this.player = GameObject.Find("MainPlayer");
 
         this.message = GameObject.Find("PleasePushKeyInfo");
 
@@ -41,7 +41,10 @@ public class Room1Event : MonoBehaviour {
         //部屋に入った状態の場合
         if (isInRoom1 == true)
         {
-            objectA.transform.LookAt(player.transform);
+            Vector3 target = player.transform.position;
+            target.y = objectA.transform.position.y;
+
+            objectA.transform.LookAt(target);
 
             //キーボードのSpaceを押す
             if (Input.GetKeyDown(KeyCode.Space))
@@ -76,9 +79,9 @@ public class Room1Event : MonoBehaviour {
     }
 
     //当たり判定に入る。
-    void OnTriggerEnter(Collider colinder){
+    void OnTriggerEnter(Collider collider){
 
-        if (colinder.tag == "player")
+        if (collider.tag == "Player")
         {
             isInRoom1 = true;
 
@@ -94,7 +97,7 @@ public class Room1Event : MonoBehaviour {
     }
 
     //当たり判定を抜ける。
-    void OnTriggerExit(Collider colinder){
+    void OnTriggerExit(Collider collider){
         isInRoom1 = false;
     }
 
